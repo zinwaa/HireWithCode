@@ -11,35 +11,22 @@ export default {
 }
 </script>
 <style scoped>
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
 input {
+    width: 65%;
     display: inline-block;
-    width: 100%;
-    height: 100%;
-    border: 1px solid var(--hrColor);
+    border: 1px solid #ccc;
     transition: all 0.3s;
     padding: 2px 10px;
     border-radius: 2px;
     font-size: 14px;
 }
 input:hover {
-    border: 1px solid var(--BlueBorder);
+    border: 1px solid rgb(39, 139, 253);
 }
 input:focus-visible {
     outline: none;
-    border: 1px solid var(--BlueBorder);
-    box-shadow: 2px 0 4px 1px var(--blueHovor), -2px 0 4px 1px var(--blueHovor);
-}
-input[type="checkbox"]{
-    padding: 0;
-    height: 15px;
-    cursor: pointer;
-    width: 15px;
+    border: 1px solid rgb(39, 139, 253);
+    box-shadow: 1px 0 4px 1px rgb(160, 204, 255), -1px 0 4px 1px rgb(160, 204, 255);
 }
 
 </style>
