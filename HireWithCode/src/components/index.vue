@@ -1,5 +1,22 @@
 <template>
     <div class="index markdown-body" v-html="context"></div>
+    <div tabindex="1" v-if="acceptChallenge" class="acceptChallenge" @click.stop="">
+        <form action="">
+            <div>
+                <label for="githubID">Github ID</label>
+                <input type="text" id="githubID">
+            </div>
+            <div>
+                <label for="githubID">邮箱</label>
+                <inputBox />
+                <input type="text" id="githubID">
+            </div>
+            <button type="button">提交</button>
+        </form>
+    </div>
+    <div tabindex="2" v-if="false">
+        <form action=""></form>
+    </div>
 </template>
 
 
@@ -8,6 +25,7 @@ import $ from 'jquery'
 import { onMounted, reactive, ref } from 'vue';
 import { marked } from 'marked'
 import "github-markdown-css"
+import inputBox from './inputBox.vue'
 const text = `# HireWithCode - 面试者挑战项目
 
 欢迎来到 \`HireWithCode\` 项目！这是一个专为技术面试者设计的真实项目挑战。目前，这个仓库刚刚起步，没有任何代码——只有待实现的功能（TODOs）。你的任务是将这些TODOs转变为实际的代码，提交你的Pull Request（PR）就是你面试的一部分挑战。
@@ -34,9 +52,8 @@ const text = `# HireWithCode - 面试者挑战项目
 
 祝你好运！`
 const context = marked(text)
+const acceptChallenge = ref(true)
 onMounted(() => {
-    const emits = defineEmits(['position']);
-    const position = reactive
     $("[type = checkbox]")[0].disabled = false
     $("[type = checkbox]")[1].disabled = false
     $("[type = checkbox]")[2].disabled = false
@@ -55,7 +72,7 @@ onMounted(() => {
     }
     $("[type = checkbox]")[2].onchange = () => {
         challengeChange
-
+        acceptChallenge.value= true
     }
 })
 
@@ -65,5 +82,50 @@ onMounted(() => {
 <style scoped>
 .index {
     padding: 5vw;
+}
+label::after {
+    content: " :";
+}
+.acceptChallenge {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    top: 0;
+    left: 0;
+}
+.acceptChallenge:focus-visible {
+    outline: none;
+}
+form {
+    display: flex;
+    gap: 1.5vh;
+    flex-direction: column;
+    padding: 4vh 2vw;
+    border-radius: 4px;
+    box-shadow: 2px 0 8px 8px #ccc;
+    
+}
+form div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+label {
+    font-size: 0.9rem;
+}
+button {
+    background: white;
+    border:1px solid rgb(39, 139, 253);
+    color: rgb(39, 139, 253);
+    border-radius: 4px;
+    width: 80%;
+    margin-left:10% ;
+    margin-top: 5%;
+    cursor: pointer;
 }
 </style>
